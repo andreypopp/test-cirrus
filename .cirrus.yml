@@ -24,6 +24,7 @@ task:
     rm -rf ./3/b
     rm -rf ./esy-opam-override
     rm -rf ./opam-repository
+    mkdir $HOME/.esycache
     tar czf $HOME/.esycache/cache.tgz .
 
 # task:
