@@ -3,39 +3,43 @@ task:
   container:
     image: node:latest
 
+  install_cache:
+    folder: $HOME/.esy/source
+    fingerprint_script: cat esy.lock/index.json
+
   install_esy_script: npm install --global --unsafe-perm=true esy
   esy_install_script: esy install
   esy_build_script: esy build
 
-task:
-  name: test_macos
-  osx_instance:
-    image: mojave-base
+# task:
+#   name: test_macos
+#   osx_instance:
+#     image: mojave-base
 
-  brew_script: brew install node
-  install_esy_script: npm install --global --unsafe-perm=true esy
-  esy_install_script: esy install
-  esy_build_script: esy build
+#   brew_script: brew install node
+#   install_esy_script: npm install --global --unsafe-perm=true esy
+#   esy_install_script: esy install
+#   esy_build_script: esy build
 
-task:
-  name: test_windows
-  windows_container:
-    image: cirrusci/windowsservercore:2019
-    os_version: 2019
+# task:
+#   name: test_windows
+#   windows_container:
+#     image: cirrusci/windowsservercore:2019
+#     os_version: 2019
 
-  choco_script: choco install nodejs
-  install_esy_script: npm install --global --unsafe-perm=true esy
-  esy_install_script: esy install
-  esy_build_script: esy build
+#   choco_script: choco install nodejs
+#   install_esy_script: npm install --global --unsafe-perm=true esy
+#   esy_install_script: esy install
+#   esy_build_script: esy build
 
-task:
-  name: publish
-  container:
-    image: node:latest
-  only_if: $BRANCH == "master"
-  depends_on:
-    - test_linux
-    - test_macos
-    - test_windows
+# task:
+#   name: publish
+#   container:
+#     image: node:latest
+#   only_if: $BRANCH == "master"
+#   depends_on:
+#     - test_linux
+#     - test_macos
+#     - test_windows
 
-  publish_script: echo ok
+#   publish_script: echo ok
