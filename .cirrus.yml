@@ -3,21 +3,19 @@ task:
   container:
     image: node:latest
 
-  test_script:
-  - npm install --global --unsafe-perm=true esy
-  - esy install
-  - esy build
+  install_esy_script: npm install --global --unsafe-perm=true esy
+  esy_install_script: esy install
+  esy_build_script: esy build
 
 task:
   name: test_macos
   osx_instance:
     image: mojave-base
 
-  test_script:
-  - brew install node
-  - npm install --global --unsafe-perm=true esy
-  - esy install
-  - esy build
+  brew_script: brew install node
+  install_esy_script: npm install --global --unsafe-perm=true esy
+  esy_install_script: esy install
+  esy_build_script: esy build
 
 task:
   name: test_windows
@@ -25,11 +23,10 @@ task:
     image: cirrusci/windowsservercore:2019
     os_version: 2019
 
-  test_script:
-  - choco install nodejs
-  - npm install --global --unsafe-perm=true esy
-  - esy install
-  - esy build
+  choco_script: choco install nodejs
+  install_esy_script: npm install --global --unsafe-perm=true esy
+  esy_install_script: esy install
+  esy_build_script: esy build
 
 task:
   name: publish
@@ -41,5 +38,4 @@ task:
     - test_macos
     - test_windows
 
-  publish_script:
-  - echo ok
+  publish_script: echo ok
