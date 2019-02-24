@@ -1,0 +1,8 @@
+container:
+  image: node:latest
+
+test_task:
+  script:
+  - npm install -g esy
+  - esy install
+  - esy build
