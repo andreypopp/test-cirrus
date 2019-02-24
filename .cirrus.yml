@@ -18,6 +18,7 @@ task:
 
   install_script: esy install
   build_script: esy build
+  test_script: esy x Hello.exe
 
   cache_script: |
     cd $HOME/.esy
