@@ -16,7 +16,7 @@ task:
       tar xzf $HOME/.esycache/cache.tgz
     fi
 
-  install_script: esy install --cache-tarballs-path _tarballs
+  install_script: esy install
   # build_script: esy build
   cache_script: |
     cd $HOME/.esy
