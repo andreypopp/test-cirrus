@@ -3,11 +3,12 @@ task:
   container:
     image: node:latest
 
+  install_esy_script: npm install --global --unsafe-perm=true esy
+
   install_cache:
     folder: $HOME/.esy/source
     fingerprint_script: cat esy.lock/index.json
 
-  install_esy_script: npm install --global --unsafe-perm=true esy
   esy_install_script: esy install
   esy_build_script: esy build
 
@@ -16,11 +17,12 @@ task:
   osx_instance:
     image: mojave-base
 
+  brew_script: brew install node
+
   install_cache:
     folder: $HOME/.esy/source
     fingerprint_script: cat esy.lock/index.json
 
-  brew_script: brew install node
   install_esy_script: npm install --global --unsafe-perm=true esy
   esy_install_script: esy install
   esy_build_script: esy build
