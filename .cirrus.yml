@@ -1,4 +1,5 @@
-test_linux:
+task:
+  name: test_linux
   container:
     image: node:latest
 
@@ -7,7 +8,16 @@ test_linux:
   - esy install
   - esy build
 
-test_windows:
+task:
+  name: test_macos
+  osx_instance:
+    image: mojave-base
+
+  test_script:
+  - npm install --global --unsafe-perm=true esy
+
+task:
+  name: test_windows
   windows_container:
     image: cirrusci/windowsservercore:2019
     os_version: 2019
@@ -15,15 +25,8 @@ test_windows:
   test_script:
   - npm install --global --unsafe-perm=true esy
 
-test_macos:
-  osx_instance:
-    image: mojave-base
-
-  task:
-    test_script:
-    - npm install --global --unsafe-perm=true esy
-
-publish:
+task:
+  name: publish
   only_if: $BRANCH == "master"
   depends_on:
     - test_linux
