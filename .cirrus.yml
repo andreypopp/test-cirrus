@@ -9,7 +9,7 @@ task:
     folder: $HOME/.esycache
     fingerprint_script: cat esy.lock/index.json
 
-  cache_script: |
+  cache_prepare_script: |
     if [ -f "$HOME/.esycache/cache.tgz" ]; then
       mkdir $HOME/.esy
       cd $HOME/.esy
