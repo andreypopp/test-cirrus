@@ -24,6 +24,7 @@ task:
     cd $HOME/.esy
     rm -rf ./3/s
     rm -rf ./3/b
+    rm -f ./3
     rm -rf ./esy-opam-override
     rm -rf ./opam-repository
     rm -rf $HOME/.esycache
@@ -57,6 +58,7 @@ task:
     cd $HOME/.esy
     rm -rf ./3/s
     rm -rf ./3/b
+    rm -f ./3
     rm -rf ./esy-opam-override
     rm -rf ./opam-repository
     rm -rf $HOME/.esycache
