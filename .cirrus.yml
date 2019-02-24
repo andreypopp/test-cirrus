@@ -8,9 +8,9 @@ task:
   install_cache:
     folder: $HOME/.esy/source
     fingerprint_script: cat esy.lock/index.json
+    populate_script: esy install
 
-  esy_install_script: esy install
-  esy_build_script: esy build
+  build_script: esy build
 
 task:
   name: test_macos
@@ -18,14 +18,14 @@ task:
     image: mojave-base
 
   brew_script: brew install node
+  install_esy_script: npm install --global --unsafe-perm=true esy
 
   install_cache:
     folder: $HOME/.esy/source
     fingerprint_script: cat esy.lock/index.json
+    populate_script: esy install
 
-  install_esy_script: npm install --global --unsafe-perm=true esy
-  esy_install_script: esy install
-  esy_build_script: esy build
+  build_script: esy build
 
 # task:
 #   name: test_windows
