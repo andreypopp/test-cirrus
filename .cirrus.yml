@@ -5,27 +5,44 @@ task:
 
   install_esy_script: npm install --global --unsafe-perm=true esy
 
-  install_cache:
-    folder: _tarballs
+  esy_cache:
+    folder: $HOME/.esycache
     fingerprint_script: cat esy.lock/index.json
-    populate_script: esy install --cache-tarballs-path _tarballs
 
-  build_script: esy build
+  cache_script: |
+    if [ -f "$HOME/.esycache/cache.tgz" ]; then
+      mkdir $HOME/.esy
+      cd $HOME/.esy
+      tar xzf $HOME/.esycache/cache.tgz
+    fi
 
-task:
-  name: test_macos
-  osx_instance:
-    image: mojave-base
+  install_script: esy install --cache-tarballs-path _tarballs
+  # build_script: esy build
+  cache_script: |
+    cd $HOME/.esy
+    rm -rf ./3/s
+    rm -rf ./3/b
+    rm -rf ./esy-opam-override
+    rm -rf ./opam-repository
+    tar czf $HOME/.esycache/cache.tgz .
 
-  brew_script: brew install node
-  install_esy_script: npm install --global --unsafe-perm=true esy
+# task:
+#   name: test_macos
+#   osx_instance:
+#     image: mojave-base
 
-  install_cache:
-    folder: _tarballs
-    fingerprint_script: cat esy.lock/index.json
-    populate_script: esy install --cache-tarballs-path _tarballs
+#   brew_script: brew install node
+#   install_esy_script: npm install --global --unsafe-perm=true esy
 
-  build_script: esy build
+#   esy_cache:
+#     folder: _tarballs
+#     fingerprint_script: cat esy.lock/index.json
+
+#   install_script: esy install --cache-tarballs-path _tarballs
+#   build_script: esy build
+#   cleanup_cache:
+#     rm -rf $HOME/.esy/3/s
+#     rm -rf $HOME/.esy/3/b
 
 # task:
 #   name: test_windows
