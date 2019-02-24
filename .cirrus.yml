@@ -3,6 +3,6 @@ container:
 
 test_task:
   script:
-  - npm install -g esy
+  - npm install --global --unsafe-perm=true esy
   - esy install
   - esy build
