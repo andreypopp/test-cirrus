@@ -17,13 +17,15 @@ task:
     fi
 
   install_script: esy install
-  # build_script: esy build
+  build_script: esy build
+
   cache_script: |
     cd $HOME/.esy
     rm -rf ./3/s
     rm -rf ./3/b
     rm -rf ./esy-opam-override
     rm -rf ./opam-repository
+    rm -rf $HOME/.esycache
     mkdir $HOME/.esycache
     tar czf $HOME/.esycache/cache.tgz .
 
