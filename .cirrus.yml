@@ -27,6 +27,8 @@ task:
 
 task:
   name: publish
+  container:
+    image: node:latest
   only_if: $BRANCH == "master"
   depends_on:
     - test_linux
