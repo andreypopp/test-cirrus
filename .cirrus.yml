@@ -7,7 +7,9 @@ task:
 
   esy_cache:
     folder: $HOME/.esycache
-    fingerprint_script: cat esy.lock/index.json
+    fingerprint_script:
+    - cat esy.lock/index.json
+    - echo linux
 
   cache_prepare_script: |
     if [ -f "$HOME/.esycache/cache.tgz" ]; then
@@ -41,7 +43,9 @@ task:
 
   esy_cache:
     folder: $HOME/.esycache
-    fingerprint_script: cat esy.lock/index.json
+    fingerprint_script:
+    - cat esy.lock/index.json
+    - echo macos
 
   cache_prepare_script: |
     if [ -f "$HOME/.esycache/cache.tgz" ]; then
