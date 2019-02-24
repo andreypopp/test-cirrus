@@ -6,9 +6,9 @@ task:
   install_esy_script: npm install --global --unsafe-perm=true esy
 
   install_cache:
-    folder: $HOME/.esy/source
+    folder: _tarballs
     fingerprint_script: cat esy.lock/index.json
-    populate_script: esy install
+    populate_script: esy install --cache-tarballs-path _tarballs
 
   build_script: esy build
 
@@ -21,9 +21,9 @@ task:
   install_esy_script: npm install --global --unsafe-perm=true esy
 
   install_cache:
-    folder: $HOME/.esy/source
+    folder: _tarballs
     fingerprint_script: cat esy.lock/index.json
-    populate_script: esy install
+    populate_script: esy install --cache-tarballs-path _tarballs
 
   build_script: esy build
 
