@@ -14,7 +14,10 @@ task:
     image: mojave-base
 
   test_script:
+  - brew install node
   - npm install --global --unsafe-perm=true esy
+  - esy install
+  - esy build
 
 task:
   name: test_windows
@@ -23,7 +26,10 @@ task:
     os_version: 2019
 
   test_script:
+  - choco install nodejs
   - npm install --global --unsafe-perm=true esy
+  - esy install
+  - esy build
 
 task:
   name: publish
