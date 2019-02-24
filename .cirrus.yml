@@ -30,23 +30,39 @@ task:
     mkdir $HOME/.esycache
     tar czf $HOME/.esycache/cache.tgz .
 
-# task:
-#   name: test_macos
-#   osx_instance:
-#     image: mojave-base
+task:
+  name: test_macos
+  osx_instance:
+    image: mojave-base
 
-#   brew_script: brew install node
-#   install_esy_script: npm install --global --unsafe-perm=true esy
+  brew_script: brew install node
+  install_esy_script: npm install --global --unsafe-perm=true esy
 
-#   esy_cache:
-#     folder: _tarballs
-#     fingerprint_script: cat esy.lock/index.json
+  esy_cache:
+    folder: $HOME/.esycache
+    fingerprint_script: cat esy.lock/index.json
 
-#   install_script: esy install --cache-tarballs-path _tarballs
-#   build_script: esy build
-#   cleanup_cache:
-#     rm -rf $HOME/.esy/3/s
-#     rm -rf $HOME/.esy/3/b
+  cache_prepare_script: |
+    if [ -f "$HOME/.esycache/cache.tgz" ]; then
+      mkdir $HOME/.esy
+      cd $HOME/.esy
+      tar xzf $HOME/.esycache/cache.tgz
+    fi
+
+  install_script: esy install
+  build_script: esy build
+  test_script: esy x Hello.exe
+
+  cache_script: |
+    cd $HOME/.esy
+    rm -rf ./3/s
+    rm -rf ./3/b
+    rm -rf ./esy-opam-override
+    rm -rf ./opam-repository
+    rm -rf $HOME/.esycache
+    mkdir $HOME/.esycache
+    tar czf $HOME/.esycache/cache.tgz .
+
 
 # task:
 #   name: test_windows
